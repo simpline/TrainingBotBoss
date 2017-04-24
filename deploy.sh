@@ -65,7 +65,7 @@ make_task_def(){
                 }
             },
             "environment" : [
-                { "name" : "HUBOT_SLACK_TOKEN", "value" : %s }
+                { "name" : "HUBOT_SLACK_TOKEN", "value" : "%s" }
             ]
         }
     ]'
