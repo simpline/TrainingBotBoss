@@ -3,7 +3,7 @@ chai = require 'chai'
 
 expect = chai.expect
 
-helper = new Helper('../scripts/hello.coffee')
+helper = new Helper('../scripts/starttraining.coffee')
 
 describe 'Training start', ->
   beforeEach ->
