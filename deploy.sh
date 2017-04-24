@@ -16,11 +16,11 @@ push_ecr_image(){
 
 deploy_cluster() {
 
-    family="trainingbot"
+    family="bot-boss"
 
     make_task_def
     register_definition
-    if [[ $(aws ecs update-service --cluster trainingbot --service traningbot-boss-service --task-definition $revision | \
+    if [[ $(aws ecs update-service --cluster bot-boss --service bot-boss-service --task-definition $revision | \
                    $JQ '.service.taskDefinition') != $revision ]]; then
         echo "Error updating service."
         return 1
@@ -29,7 +29,7 @@ deploy_cluster() {
     # wait for older revisions to disappear
     # not really necessary, but nice for demos
     for attempt in {1..30}; do
-        if stale=$(aws ecs describe-services --cluster traningbot --services traningbot-boss-service | \
+        if stale=$(aws ecs describe-services --cluster bot-boss --services bot-boss-service | \
                        $JQ ".services[0].deployments | .[] | select(.taskDefinition != \"$revision\") | .taskDefinition"); then
             echo "Waiting for stale deployments:"
             echo "$stale"
@@ -46,21 +46,31 @@ deploy_cluster() {
 make_task_def(){
     task_template='[
         {
-            "name": "traningbotboss",
-            "image": "%s.dkr.ecr.ap-northeast-1.amazonaws.com/simpline/traningbotboss:%s",
+            "name": "boss",
+            "image": "%s.dkr.ecr.ap-northeast-1.amazonaws.com/bot/boss:%s",
             "essential": true,
-            "memory": 200,
-            "cpu": 10,
+            "memory": 128,
             "portMappings": [
                 {
                     "containerPort": 8080,
                     "hostPort": 8080
                 }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "trainingbot",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "boss"
+                }
+            },
+            "environment" : [
+                { "name" : "HUBOT_SLACK_TOKEN", "value" : %s }
             ]
         }
     ]'
 
-    task_def=$(printf "$task_template" $AWS_ACCOUNT_ID $CIRCLE_SHA1)
+    task_def=$(printf "$task_template" $AWS_ACCOUNT_ID $CIRCLE_SHA1 $MYHUBOT_SLACK_TOKEN)
 }
 
 register_definition() {
