@@ -3,8 +3,7 @@ FROM node:alpine
 MAINTAINER Daisuke Miura <miura.daisuke@simpline.co.jp>
 
 RUN npm install -g coffee-script yo generator-hubot hubot-slack --save
-RUN useradd hubot
-RUN mkdir /home/hubot && chown hubot.hubot /home/hubot
+RUN adduser -S hubot
 
 USER hubot
 WORKDIR /home/hubot
