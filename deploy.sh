@@ -11,7 +11,7 @@ configure_aws_cli(){
 
 push_ecr_image(){
     eval $(aws ecr get-login --region ap-northeast-1)
-    docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/simpline/traningbotboss:$CIRCLE_SHA1
+    docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/bot/boss:$CIRCLE_SHA1
 }
 
 deploy_cluster() {
