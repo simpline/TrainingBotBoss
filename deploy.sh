@@ -4,9 +4,14 @@
 JQ="jq --raw-output --exit-status"
 
 configure_aws_cli(){
-	aws --version
-	aws configure set default.region ap-northeast-1
-	aws configure set default.output json
+    aws --version
+    aws configure set default.region ap-northeast-1
+    aws configure set default.output json
+}
+
+push_ecr_image(){
+    eval $(aws ecr get-login --region ap-northeast-1)
+    docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/simpline/traningbotboss:$CIRCLE_SHA1
 }
 
 deploy_cluster() {
@@ -39,28 +44,23 @@ deploy_cluster() {
 }
 
 make_task_def(){
-	task_template='[
-		{
-			"name": "traningbotboss",
-			"image": "%s.dkr.ecr.ap-northeast-1.amazonaws.com/simpline/traningbotboss:%s",
-			"essential": true,
-			"memory": 200,
-			"cpu": 10,
-			"portMappings": [
-				{
-					"containerPort": 8080,
-					"hostPort": 8080
-				}
-			]
-		}
-	]'
-	
-	task_def=$(printf "$task_template" $AWS_ACCOUNT_ID $CIRCLE_SHA1)
-}
+    task_template='[
+        {
+            "name": "traningbotboss",
+            "image": "%s.dkr.ecr.ap-northeast-1.amazonaws.com/simpline/traningbotboss:%s",
+            "essential": true,
+            "memory": 200,
+            "cpu": 10,
+            "portMappings": [
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080
+                }
+            ]
+        }
+    ]'
 
-push_ecr_image(){
-	eval $(aws ecr get-login --region ap-northeast-1)
-	docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/simpline/traningbotboss:$CIRCLE_SHA1
+    task_def=$(printf "$task_template" $AWS_ACCOUNT_ID $CIRCLE_SHA1)
 }
 
 register_definition() {
