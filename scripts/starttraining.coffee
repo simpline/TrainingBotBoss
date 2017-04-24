@@ -11,7 +11,6 @@ module.exports = (robot) ->
               早速だけど、お客様にあいさつにしにいってもらえますか。\
               「@customer {名前}と申します。{これまでの経歴}」の形式です。"
 
-module.exports = (robot) ->
   robot.respond /まず何からやりましょうか。/i, (res) ->
     res.reply "そうですね。あるサーバの動きがおかしいのでログを取ってきてください。\
               他にCPUやメモリなども調べてきてください。"

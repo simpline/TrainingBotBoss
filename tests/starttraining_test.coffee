@@ -16,7 +16,7 @@ describe 'Training start', ->
     @room.user.say('miura', '@hubot 三浦と申します。監視ソフトウェアの構築をしていました。').then =>
       expect(@room.messages).to.eql [
         ['miura', '@hubot 三浦と申します。監視ソフトウェアの構築をしていました。']
-        ['hubot', '@miura: はじめまして、三浦さん。これからよろしくお願いします。\
+        ['hubot', '@miura はじめまして、三浦さん。これからよろしくお願いします。\
                            早速だけど、お客様にあいさつにしにいってもらえますか。\
                            「@customer {名前}と申します。{これまでの経歴}」の形式です。']
       ]
