@@ -18,7 +18,7 @@ describe 'The 1st week of Training', ->
         expect(@room.messages).to.eql [
           ['miura', '@hubot 本日より配属されました三浦と申します。監視ソフトウェアの構築をしていました。']
           ['hubot', '@miura はじめまして、三浦さん。これからよろしくお願いします。早速だけど、お客様にあいさつにしにいってもらえますか。']
-          ['hubot', '「@customer {名前}と申します。{これまでの経歴}」の形式です。']
+          ['hubot', '@miura 「@customer {名前}と申します。{これまでの経歴}」の形式です。']
         ]
 
     it 'should instruct building a server', ->
