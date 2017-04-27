@@ -1,5 +1,6 @@
 # Description:
 #   The 2nd week of Training - 研修2週目
+#   9日目が完了したら、いずれかのサーバもしくはプロセスを停止もしくは削除してください。
 #
 # Commands:
 #   boss 6日目は何をしましょうか。
