@@ -7,8 +7,7 @@
 module.exports = (robot) ->
   robot.respond /本日より配属されました(.*)と申します。.*/i, (res) ->
     namae = res.match[1]
-    res.reply "はじめまして、#{namae}さん。これからよろしくお願いします。早速だけど、お客様にあいさつにしにいってもらえますか。"
-    res.reply "「@customer {名前}と申します。{これまでの経歴}」の形式です。"
+    res.reply "はじめまして、#{namae}さん。これからよろしくお願いします。早速だけど、お客様に「{名前}と申します。{これまでの経歴}」とあいさつにしにいってもらえますか。"
 
   robot.respond /お客様にあいさつしてきました。/i, (res) ->
     res.reply "ある案件で急にサーバが1台必要になったので、それを用意してもらえますか。OSはCentOS7で お願いします。次のサイトを参考にして初期設定まで完了させてください。https://www.server-world.info"
