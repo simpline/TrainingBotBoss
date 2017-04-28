@@ -53,7 +53,7 @@ module.exports = (robot) ->
               """
 
   robot.respond /NTPを導入してきました。.*/i, (res) ->
-    res.reply "お疲れ様です。手順は残しておいてください。2日日はこれでおしまいです。"
+    res.reply "お疲れ様です。手順は残しておいてください。2日目はこれでおしまいです。"
 
   robot.respond /3日目は何をしましょうか。/i, (res) ->
     res.reply """
@@ -63,7 +63,7 @@ module.exports = (robot) ->
               """
 
   robot.respond /メールサーバを立ててきました。.*/i, (res) ->
-    res.reply "お疲れ様です。手順は残しておいてください。3日日はこれでおしまいです。"
+    res.reply "お疲れ様です。手順は残しておいてください。3日目はこれでおしまいです。"
 
   robot.respond /4日目は何をしましょうか。/i, (res) ->
     res.reply """
