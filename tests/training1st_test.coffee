@@ -13,6 +13,14 @@ describe 'The 1st week of Training', ->
     @room.destroy()
 
   context 'trainee asks hubot for a training', ->
+
+    it 'should instruct trainee to introduce to boss', ->
+      @room.user.say('miura', '@hubot 1日目は何をしましょうか。').then =>
+        expect(@room.messages).to.eql [
+          ['miura', '@hubot 1日目は何をしましょうか。']
+          ['hubot', '@miura まずは、これからの意気込みについて語っていただけますでしょうか。\n私に「本日より配属されました[名前]と申します。[意気込み]」とあいさつしてください。']
+        ]
+
     it 'should instruct a greeting to customer', ->
       @room.user.say('miura', '@hubot 本日より配属されました三浦と申します。監視ソフトウェアの構築をしていました。').then =>
         expect(@room.messages).to.eql [
