@@ -17,7 +17,7 @@ describe 'The 2nd week of Training', ->
       @room.user.say('miura', '@hubot 6日目は何をしましょうか。').then =>
         expect(@room.messages).to.eql [
           ['miura', '@hubot 6日目は何をしましょうか。']
-          ['hubot', '@miura 今日はお客様が何かしてほしいことがあるようです。\nお客様に「ご用件を伺いに来ました。」 と聞いてきてもらえますか。']
+          ['hubot', '@miura 今日はお客様が何かしてほしいことがあるようです。\nお客様に「ご用件を伺いに来ました。」と聞いてきてもらえますか。']
         ]
 
     it 'should instruct trainee to build wordpress', ->
