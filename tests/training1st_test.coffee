@@ -60,7 +60,7 @@ describe 'The 1st week of Training', ->
       @room.user.say('miura', '@hubot 3日目は何をしましょうか。').then =>
         expect(@room.messages).to.eql [
           ['miura', '@hubot 3日目は何をしましょうか。']
-          ['hubot', '@miura 急遽メールサーバが必要になったので、構築してください。\n時刻同期やホスト名は前回構築したサーバを使用して設定されるようにしてください。\n終わったら、「メールサーバを立ててきました。{感想}」と報告してください。']
+          ['hubot', '@miura 急遽メールサーバが必要になったので、新たに構築してください。\n時刻同期は前回構築したサーバを使用して設定されるようにしてください。\n終わったら、「メールサーバを立ててきました。{感想}」と報告してください。']
         ]
 
     it 'should finish the 3rd day of training', ->
